@@ -2,7 +2,6 @@ package org.javaacademy.AtomicStation;
 
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
-
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
