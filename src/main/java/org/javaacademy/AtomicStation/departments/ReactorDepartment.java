@@ -2,7 +2,6 @@ package org.javaacademy.AtomicStation.departments;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
 import org.springframework.stereotype.Component;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Component;
 /**
 Реакторный цех, отвечает за производство электроэнергии
  */
-@Slf4j
 @Component
 @Getter
 @Setter

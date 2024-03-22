@@ -15,13 +15,6 @@ public class NuclearStationTest {
     }
 
     @Test
-    @DisplayName("Тест успешного увеличения числа инцидентов")
-    public void startYear() {
-        nuclearStationMock.incrementAccident(3);
-        Mockito.when(nuclearStationMock.getAccidentCountAllTime()).thenReturn(3);
-    }
-
-    @Test
     @DisplayName("Тест на успешное добавление числа инцидентов")
     public void incrementAccident() {
         nuclearStationMock.incrementAccident(10);
