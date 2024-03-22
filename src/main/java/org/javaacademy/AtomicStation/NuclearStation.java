@@ -2,12 +2,15 @@ package org.javaacademy.AtomicStation;
 
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
+import org.springframework.stereotype.Component;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
+@Component
 public class NuclearStation {
     private final ReactorDepartment reactorDepartment;
-    private int generatedEnergyAll;
+    private long generatedEnergyAll;
 
     public NuclearStation(ReactorDepartment reactorDepartment) {
         this.reactorDepartment = reactorDepartment;
@@ -15,7 +18,7 @@ public class NuclearStation {
     }
 
     public void startYear() {
-        AtomicInteger generatedEnergyOneYear = new AtomicInteger();
+        AtomicLong generatedEnergyOneYear = new AtomicLong();
         System.out.println("Атомная станция начала работу");
         IntStream.range(0, 365).forEach(i -> {
             try {

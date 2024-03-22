@@ -40,6 +40,7 @@ public class ReactorDepartmentTest {
         Assertions.assertDoesNotThrow(reactorDepartment::stop);
         Assertions.assertFalse(reactorDepartment.getIsWork());
     }
+
     @Test
     @DisplayName("Тест остановки реактора при выключенном реакторе")
     public void stopFail() {

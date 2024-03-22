@@ -16,11 +16,11 @@ import org.springframework.stereotype.Component;
 @Setter
 public class ReactorDepartment {
     private Boolean isWork = false;
-    private int KWT_IN_HOUR = 10_000_000;
+    private static final long KWT_IN_HOUR = 10_000_000;
     private int runCounter = 0;
-    private int LIMIT_RUN_COUNTER = 100;
+    private static final long LIMIT_RUN_COUNTER = 100;
 
-    public int run() throws ReactorWorkException, NuclearFuelIsEmptyException {
+    public long run() {
         if (this.isWork) {
             throw new ReactorWorkException("Реактор уже работает");
         }
@@ -32,7 +32,7 @@ public class ReactorDepartment {
         return KWT_IN_HOUR;
     }
 
-    public void stop() throws ReactorWorkException {
+    public void stop() {
         if (!this.isWork) {
             throw new ReactorWorkException("Реактор уже выключен");
         }
