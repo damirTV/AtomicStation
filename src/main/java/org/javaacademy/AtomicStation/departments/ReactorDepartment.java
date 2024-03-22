@@ -1,4 +1,4 @@
-package org.javaacademy.AtomicStation;
+package org.javaacademy.AtomicStation.departments;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,12 +19,18 @@ public class ReactorDepartment {
     private static final long KWT_IN_HOUR = 10_000_000;
     private int runCounter = 0;
     private static final long LIMIT_RUN_COUNTER = 100;
+    private SecurityDepartment securityDepartment;
+
+    public ReactorDepartment(SecurityDepartment securityDepartment) {
+        this.securityDepartment = securityDepartment;
+    }
 
     public long run() {
         if (this.isWork) {
             throw new ReactorWorkException("Реактор уже работает");
         }
         if (this.runCounter == LIMIT_RUN_COUNTER) {
+            securityDepartment.addAccident();
             throw new NuclearFuelIsEmptyException("В реакторе закончилось топливо");
         }
         this.runCounter++;
