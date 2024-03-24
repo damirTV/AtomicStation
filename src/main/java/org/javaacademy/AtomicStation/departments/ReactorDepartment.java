@@ -1,7 +1,6 @@
 package org.javaacademy.AtomicStation.departments;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
 import org.springframework.stereotype.Component;
@@ -9,15 +8,14 @@ import org.springframework.stereotype.Component;
 /**
 Реакторный цех, отвечает за производство электроэнергии
  */
+@Slf4j
 @Component
-@Getter
-@Setter
 public class ReactorDepartment {
     private Boolean isWork = false;
     private static final long KWT_IN_HOUR = 10_000_000;
     private int runCounter = 0;
     private static final long LIMIT_RUN_COUNTER = 100;
-    private SecurityDepartment securityDepartment;
+    private final SecurityDepartment securityDepartment;
 
     public ReactorDepartment(SecurityDepartment securityDepartment) {
         this.securityDepartment = securityDepartment;

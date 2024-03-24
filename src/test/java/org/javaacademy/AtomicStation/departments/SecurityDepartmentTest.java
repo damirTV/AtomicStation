@@ -11,7 +11,7 @@ public class SecurityDepartmentTest {
     SecurityDepartment securityDepartment = new SecurityDepartment(nuclearStationMock);
 
     @Test
-    @DisplayName("Тест на успешное увеличение числа инциндентов за период")
+    @DisplayName("Тест на успешное увеличение числа инцидентов за период")
     public void addAccidentSuccess() {
         Assertions.assertDoesNotThrow(securityDepartment::addAccident);
     }

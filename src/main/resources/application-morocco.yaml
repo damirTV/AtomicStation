@@ -1,0 +1,5 @@
+countrySettings:
+  country: Morocco
+  currency: dirham
+  baseRate: 5
+  limit: 5_000_000_000

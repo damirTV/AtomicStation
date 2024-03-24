@@ -1,57 +1,69 @@
 package org.javaacademy.AtomicStation;
 
-import lombok.Getter;
+import lombok.ToString;
+import org.javaacademy.AtomicStation.departments.EconomicDepartment;
 import org.javaacademy.AtomicStation.departments.ReactorDepartment;
 import org.javaacademy.AtomicStation.departments.SecurityDepartment;
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.IntStream;
 
 /**
 Атомная станция
  */
 @Component
-@Getter
+@ToString
 public class NuclearStation {
     private final ReactorDepartment reactorDepartment;
     private final SecurityDepartment securityDepartment;
+    private final EconomicDepartment economicDepartment;
     private long generatedEnergyAll;
     private int accidentCountAllTime;
+    @Value("${countrySettings.country}")
+    String country;
+    @Value("${countrySettings.currency}")
+    String currency;
 
-
-    public NuclearStation(ReactorDepartment reactorDepartment, SecurityDepartment securityDepartment) {
+    public NuclearStation(ReactorDepartment reactorDepartment, SecurityDepartment securityDepartment,
+                          EconomicDepartment economicDepartment) {
         this.reactorDepartment = reactorDepartment;
         this.securityDepartment = securityDepartment;
+        this.economicDepartment = economicDepartment;
         this.generatedEnergyAll = 0;
     }
 
     private void startYear() {
-        AtomicLong generatedEnergyOneYear = new AtomicLong();
+        int counter = 1;
+        long generatedEnergyOneYear = 0;
         System.out.println("Атомная станция начала работу");
-        IntStream.range(0, 365).forEach(i -> {
+        while (counter <= 365) {
             try {
-                generatedEnergyOneYear.set(reactorDepartment.run() + generatedEnergyOneYear.get());
+                generatedEnergyOneYear += reactorDepartment.run();
             } catch (NuclearFuelIsEmptyException | ReactorWorkException e) {
                 System.out.println("Внимание! Происходят работы на атомной станции! Электричества нет!");
                 throw new RuntimeException(e);
             }
-            try {
-                reactorDepartment.stop();
-            } catch (ReactorWorkException e) {
-                throw new RuntimeException(e);
-            }
-        });
+            reactorDepartment.stop();
+            counter++;
+        }
         System.out.printf("Атомная станция закончила работу. За год Выработано %s киловатт/часов\n",
                 generatedEnergyOneYear);
-        generatedEnergyAll = generatedEnergyOneYear.get() + generatedEnergyAll;
+        generatedEnergyAll = generatedEnergyOneYear + generatedEnergyAll;
         System.out.println("Количество инцидентов за год: " + securityDepartment.getCountAccidents());
+        System.out.println("Доход за год составил: " +
+                economicDepartment.computeYearIncomes(generatedEnergyOneYear) +
+                " " + currency);
         securityDepartment.reset();
     }
 
     public void start(int year) {
-        IntStream.range(0, year).forEach(i -> startYear());
+        int counter = 1;
+        System.out.println("Действие происходит в стране: " + country);
+        while (counter <= year) {
+            startYear();
+            counter++;
+        }
         System.out.println("Количество инцидентов за всю работу станции: " + accidentCountAllTime);
     }
 

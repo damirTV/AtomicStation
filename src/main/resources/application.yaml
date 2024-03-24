@@ -1,2 +1,8 @@
-ReactorDepartment:
-  KWT_IN_HOUR: 10_000_000
+spring:
+  profiles.active: morocco
+
+
+
+
+
+
