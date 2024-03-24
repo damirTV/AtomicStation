@@ -29,5 +29,6 @@ public class FranceEconomicDepartment extends EconomicDepartment{
         }
         return new BigDecimal(income);
     }
+
 }
 
