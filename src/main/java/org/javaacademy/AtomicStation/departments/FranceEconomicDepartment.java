@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 @Profile("france")
 @Component
 public class FranceEconomicDepartment extends EconomicDepartment{
-    @Value("${countrySettings.baseRate}")
-    double baseRate;
-    @Value("${countrySettings.discount}")
-    double discount;
-    @Value("${countrySettings.limit}")
-    int limit;
+    @Value("${country.baseRate}")
+    private double baseRate;
+    @Value("${country.discount}")
+    private double discount;
+    @Value("${country.limit}")
+    private double limit;
 
     @Override
     public BigDecimal computeYearIncomes(long countElectricity) {

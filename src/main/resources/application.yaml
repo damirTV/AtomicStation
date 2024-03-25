@@ -1,4 +1,6 @@
-
+string:
+  application:
+    name: AtomicStation
 
 
 

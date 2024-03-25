@@ -9,7 +9,9 @@ import org.mockito.Mockito;
 
 public class ReactorDepartmentTest {
     SecurityDepartment securityDepartmentMock = Mockito.mock(SecurityDepartment.class);
-    private final ReactorDepartment reactorDepartment = new ReactorDepartment(securityDepartmentMock);
+    MaintenanceDepartment maintenanceDepartmentMock = Mockito.mock(MaintenanceDepartment.class);
+    private final ReactorDepartment reactorDepartment =
+            new ReactorDepartment(securityDepartmentMock);
 
     @Test
     @DisplayName("Тест запуска реактора при выключенном реакторе")
