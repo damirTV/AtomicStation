@@ -16,7 +16,7 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
     private double limit;
 
     @Override
-    public BigDecimal computeYearIncomes(long countElectricity) {
+    public BigDecimal computeYearIncomes(long countElectricity) { //TODO - работать сразу с BigDecimal
         if (countElectricity <= limit) {
             return new BigDecimal(countElectricity * baseRate);
         }

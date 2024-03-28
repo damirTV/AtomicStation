@@ -18,7 +18,7 @@ public class FranceEconomicDepartment extends EconomicDepartment{
     private double limit;
 
     @Override
-    public BigDecimal computeYearIncomes(long countElectricity) {
+    public BigDecimal computeYearIncomes(long countElectricity) { //TODO - переделать формулу
         double realState = baseRate; // При каждом вызове методе скидка сбрасывается
         double income = 0;
         for (long i = 1; i <= countElectricity; i++) {
