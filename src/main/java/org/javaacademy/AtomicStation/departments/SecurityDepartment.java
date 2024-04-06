@@ -10,11 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityDepartment {
     private final NuclearStation nuclearStation;
-    private int accidentCountPeriod;
+    private int accidentCountPeriod = 0;
 
-    public SecurityDepartment(@Lazy NuclearStation nuclearStation) {
+    public SecurityDepartment(NuclearStation nuclearStation) {
         this.nuclearStation = nuclearStation;
-        this.accidentCountPeriod = 0;
     }
 
     public void addAccident() {

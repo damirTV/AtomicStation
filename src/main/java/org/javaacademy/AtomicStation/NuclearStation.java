@@ -1,6 +1,5 @@
 package org.javaacademy.AtomicStation;
 
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.javaacademy.AtomicStation.departments.EconomicDepartment;
 import org.javaacademy.AtomicStation.departments.MaintenanceDepartment;
@@ -9,6 +8,7 @@ import org.javaacademy.AtomicStation.departments.SecurityDepartment;
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
 import org.javaacademy.AtomicStation.exceptions.ReactorWorkException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,26 +16,24 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@ToString
 public class NuclearStation {
     private final ReactorDepartment reactorDepartment;
     private final SecurityDepartment securityDepartment;
     private final EconomicDepartment economicDepartment;
     private final MaintenanceDepartment maintenanceDepartment;
-    private long generatedEnergyAll;
+    private long generatedEnergyAll = 0;
     private int accidentCountAllTime;
     @Value("${country.country}")
     private String country;
     @Value("${country.currency}")
     private String currency;
 
-    public NuclearStation(ReactorDepartment reactorDepartment, SecurityDepartment securityDepartment,
-                          EconomicDepartment economicDepartment, MaintenanceDepartment maintenanceDepartment) {
+    public NuclearStation(@Lazy ReactorDepartment reactorDepartment, @Lazy SecurityDepartment securityDepartment,
+                          EconomicDepartment economicDepartment, @Lazy MaintenanceDepartment maintenanceDepartment) {
         this.reactorDepartment = reactorDepartment;
         this.securityDepartment = securityDepartment;
         this.economicDepartment = economicDepartment;
         this.maintenanceDepartment = maintenanceDepartment;
-        this.generatedEnergyAll = 0;
     }
 
     private void startYear() {

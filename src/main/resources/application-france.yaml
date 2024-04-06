@@ -1,6 +1,6 @@
 country:
   country: France
   currency: euro
-  baseRate: 0.5
+  baserate: 0.5
   discount: 0.99
   limit: 1_000_000_000

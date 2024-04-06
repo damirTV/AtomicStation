@@ -1,16 +1,14 @@
 package org.javaacademy.AtomicStation.departments;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
-@Configuration
 @Profile("france")
 @Component
 public class FranceEconomicDepartment extends EconomicDepartment{
-    @Value("${country.baseRate}")
+    @Value("${country.baserate}")
     private double baseRate;
     @Value("${country.discount}")
     private double discount;

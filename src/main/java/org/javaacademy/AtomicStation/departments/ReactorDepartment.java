@@ -1,5 +1,6 @@
 package org.javaacademy.AtomicStation.departments;
 
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.javaacademy.AtomicStation.exceptions.NuclearFuelIsEmptyException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class ReactorDepartment {
     private Boolean isWork = false;
     private static final long KWT_IN_HOUR = 10_000_000;
@@ -18,10 +20,6 @@ public class ReactorDepartment {
     private int runCounter = 0;
     private static final long LIMIT_RUN_COUNTER = 100;
     private final SecurityDepartment securityDepartment;
-
-    public ReactorDepartment(SecurityDepartment securityDepartment) {
-        this.securityDepartment = securityDepartment;
-    }
 
     public long run() {
         if (this.isWork) {
