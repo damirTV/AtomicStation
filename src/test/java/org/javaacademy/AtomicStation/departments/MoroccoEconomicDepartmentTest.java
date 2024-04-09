@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-
 import java.math.BigDecimal;
 
 @SpringBootTest
@@ -25,8 +24,8 @@ public class MoroccoEconomicDepartmentTest {
     @Test
     @DisplayName("Тест на успешный расчет дохода за год свыше 5 млрд. киловатт/часов")
     public void computeYearIncomesHigher5BSuccess() {
-        BigDecimal result = new BigDecimal("55000000000");
+        BigDecimal result = new BigDecimal("3.10E+10");
         Assertions.assertEquals(result,
-                moroccoEconomicDepartment.computeYearIncomes(10_000_000_000L));
+                moroccoEconomicDepartment.computeYearIncomes(6_000_000_000L));
     }
 }

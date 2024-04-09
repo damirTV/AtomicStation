@@ -11,13 +11,16 @@ public class MoroccoEconomicDepartment extends EconomicDepartment {
     @Value("${country.baseRate}")
     private double baseRate;
     @Value("${country.limit}")
-    private double limit;
+    private double step;
 
     @Override
-    public BigDecimal computeYearIncomes(long countElectricity) { //TODO - работать сразу с BigDecimal
-        if (countElectricity <= limit) {
-            return new BigDecimal(countElectricity * baseRate);
+    public BigDecimal computeYearIncomes(long countElectricity) {
+        BigDecimal rate = new BigDecimal(baseRate);
+        if (countElectricity <= step) {
+            return rate.multiply(BigDecimal.valueOf(countElectricity));
         }
-        return new BigDecimal((limit * baseRate) + ((countElectricity - limit) * 6));
+        return rate.multiply(BigDecimal.valueOf(step))
+                .add(BigDecimal.valueOf(countElectricity - step)
+                        .multiply(BigDecimal.valueOf(6)));
     }
 }

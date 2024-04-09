@@ -13,19 +13,22 @@ public class FranceEconomicDepartment extends EconomicDepartment{
     @Value("${country.discount}")
     private double discount;
     @Value("${country.limit}")
-    private double limit;
+    private long step;
 
     @Override
-    public BigDecimal computeYearIncomes(long countElectricity) { //TODO - переделать формулу
-        double realState = baseRate; // При каждом вызове методе скидка сбрасывается
-        double income = 0;
-        for (long i = 1; i <= countElectricity; i++) {
-            income += realState;
-            if (i % limit == 0) {
-                realState = realState * discount;
+    public BigDecimal computeYearIncomes(long countElectricity) {
+        BigDecimal realState = new BigDecimal(baseRate); // При каждом вызове методе скидка сбрасывается
+        BigDecimal income = BigDecimal.ZERO;
+        if (countElectricity < step) {
+            return realState.multiply(BigDecimal.valueOf(countElectricity));
+        }
+        for (long i = step; i <= countElectricity; i += step) {
+            income = income.add(realState.multiply(BigDecimal.valueOf(step)));
+            if (i % step == 0) {
+                realState = realState.multiply(BigDecimal.valueOf(discount));
             }
         }
-        return new BigDecimal(income);
+        return income;
     }
 
 }
