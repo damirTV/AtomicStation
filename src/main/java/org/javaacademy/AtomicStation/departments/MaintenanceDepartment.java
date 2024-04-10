@@ -15,6 +15,5 @@ public class MaintenanceDepartment {
 
     public void repairReactor() {
         reactorDepartment.setRunCounter(0);
-        log.info("Работа реактора восстановлена");
     }
 }

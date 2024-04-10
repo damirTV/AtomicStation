@@ -1,7 +1,6 @@
 package org.javaacademy.AtomicStation.departments;
 
 import org.javaacademy.AtomicStation.NuclearStation;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityDepartment {
     private final NuclearStation nuclearStation;
-    private int accidentCountPeriod = 0;
+    private Integer accidentCountPeriod = 0;
 
     public SecurityDepartment(NuclearStation nuclearStation) {
         this.nuclearStation = nuclearStation;
@@ -20,7 +19,7 @@ public class SecurityDepartment {
         this.accidentCountPeriod++;
     }
 
-    public int getCountAccidents() {
+    public Integer getCountAccidents() {
         return accidentCountPeriod;
     }
 
